@@ -7,6 +7,6 @@ aws ec2 run-instances \
         --key-name OpenfireKeyPair \
         --associate-public-ip-addres \
         --security-group-ids sg-0d9a1875bfcb1cde7 \
-        --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=Aselsan Machine}]'
+        --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=TheMachine}]'
 
 
