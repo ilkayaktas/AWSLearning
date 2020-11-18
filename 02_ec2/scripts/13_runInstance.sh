@@ -5,7 +5,5 @@ then
     echo "Missing argument"
     exit 0
 else 
-    aws iam get-group --group-name $1
+    aws ec2 start-instances --instance-ids $1
 fi
-
-
