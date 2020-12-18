@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-aws sns list-topics
+aws sns list-topics 
