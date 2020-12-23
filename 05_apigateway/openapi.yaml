@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  description: This is a simple user application API created by iaktas.
+  version: "1.0.0"
+  title: Student API
+  contact:
+    email: ilkayaktas@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+paths:
+  /users:
+    get:
+      tags:
+        - developers
+      summary: searches users
+      operationId: getUserList
+      description: |
+        By passing in the appropriate options, you can search for
+        available users in the system
+      parameters:
+        - in: query
+          name: searchString
+          description: pass an optional search string for looking up users
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: skip
+          description: number of records to skip for pagination
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+        - in: query
+          name: limit
+          description: maximum number of records to return
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 50
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserItem'
+        '400':
+          description: bad input parameter
+    post:
+      tags:
+        - admins
+      summary: adds an user item
+      operationId: addUser
+      description: Adds a user to the system
+      responses:
+        '201':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing item already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserItem'
+        description: User item to add
+components:
+  schemas:
+    UserItem:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: İlkay Aktaş
