@@ -1,3 +1,3 @@
-#!/usr/bin/env bashü
+#!/usr/bin/env bash
 
 aws ec2 describe-images --owners self
