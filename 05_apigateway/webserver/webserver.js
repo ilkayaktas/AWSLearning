@@ -9,7 +9,11 @@ http.createServer(function (req, res) {
     }
     else if(req.url == "/count"){
         res.write("3");
-    } else{
+    } 
+    else if(req.url == "/health"){
+        res.write("OK");
+    } 
+    else{
         res.write("No request!!! ");
     }
     res.end("\n"+os.hostname()+"\n");
